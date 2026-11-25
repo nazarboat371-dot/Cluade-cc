@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#E8590C" />
+    <meta name="description" content="Saffron Riot Tikka Masala simmer sauce. Slow-simmered tomatoes, cultured cream and twelve hand-toasted spices. Dinner in twenty minutes." />
+    <title>Saffron Riot — Bold Flavor Tikka Masala</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%23E8590C'/%3E%3Cpath d='M20 40c6-18 18-22 26-22-6 4-10 12-12 20-2 6-8 8-14 2z' fill='%23FFC21A'/%3E%3C/svg%3E" />
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+
+    <!-- Fixed WebGL stage for the jar. Purely decorative. -->
+    <canvas id="jar-stage" aria-hidden="true"></canvas>
+    <div class="grain" aria-hidden="true"></div>
+
+    <header class="nav" data-nav>
+      <nav class="nav__left" aria-label="Primary">
+        <ul class="nav__links" id="nav-links">
+          <li><a class="pill" href="#story">Story</a></li>
+          <li><a class="pill" href="#inside">Inside</a></li>
+          <li><a class="pill" href="#recipes">Recipes</a></li>
+          <li><a class="pill" href="#why">Why Glass</a></li>
+        </ul>
+        <button class="pill pill--menu" type="button" aria-expanded="false" aria-controls="nav-links" data-menu>
+          <span class="burger" aria-hidden="true"><i></i><i></i></span>
+          <span>Menu</span>
+        </button>
+      </nav>
+
+      <a class="logo" href="#top" aria-label="Saffron Riot home">
+        <span>Saffron</span>
+        <svg class="logo__mark" viewBox="0 0 40 40" aria-hidden="true">
+          <path d="M8 30c5-15 15-21 25-22-5 4-9 11-11 18-2 6-9 9-14 4z" fill="currentColor"/>
+          <path d="M31 8c1-3 3-4 5-4" stroke="currentColor" stroke-width="3" stroke-linecap="round" fill="none"/>
+        </svg>
+        <span>Riot</span>
+      </a>
+
+      <div class="nav__right">
+        <button class="pill pill--cart" type="button" aria-label="Cart, 0 items">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2.2l2.3 11h10.8l2.2-8H6.6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="19.5" r="1.6" fill="currentColor"/><circle cx="17" cy="19.5" r="1.6" fill="currentColor"/></svg>
+          <span class="pill__label">Cart</span>
+          <span class="pill__count" data-cart-count>0</span>
+        </button>
+        <a class="pill pill--pink" href="#order">Order Now</a>
+      </div>
+    </header>
+
+    <main id="main">
+      <!-- 1. HERO -->
+      <section class="hero pattern pattern--orange" id="top" aria-labelledby="hero-title">
+        <h1 class="hero__title" id="hero-title">
+          <span class="hero__line display" data-fit data-split>Bold Flavor</span>
+          <span class="hero__sub display display--yellow" data-split>Tikka Masala</span>
+        </h1>
+
+        <div class="jar-slot hero__slot" data-jar="hero"></div>
+
+        <div class="hero__bottom">
+          <p class="hero__blurb" data-fade>
+            Slow-simmered vine tomatoes, cultured cream and twelve hand-toasted spices.
+            One jar. Twenty minutes. Dinner that riots.
+          </p>
+          <a class="btn" href="#order" data-fade>
+            Grab a jar
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13m-5-6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+
+        <div class="hero__badge" aria-hidden="true">
+          <svg viewBox="0 0 200 200">
+            <defs><path id="badge-circle" d="M100 100m-74 0a74 74 0 1 1 148 0a74 74 0 1 1-148 0"/></defs>
+            <circle cx="100" cy="100" r="96" fill="#FF2D87"/>
+            <text><textPath href="#badge-circle" startOffset="0">SMALL BATCH ✺ SLOW SIMMERED ✺ MEDIUM HEAT ✺</textPath></text>
+            <path d="M100 62l9 26h27l-22 16 8 27-22-16-22 16 8-27-22-16h27z" fill="#FFC21A"/>
+          </svg>
+        </div>
+
+        <p class="hero__scroll" aria-hidden="true"><span></span>Scroll to unwrap</p>
+      </section>
+
+      <!-- 2. PINNED STORY -->
+      <section class="story" id="story" aria-label="Our story">
+        <div class="story__glow" aria-hidden="true"></div>
+        <p class="eyebrow story__eyebrow">Chapter 01 — The Unwrapping</p>
+
+        <h2 class="visually-hidden">Unwrap the adventure. A new perspective on taste.</h2>
+        <div class="story__row story__row--top" aria-hidden="true">
+          <span class="story__text display" data-story="a" data-split>Unwrap the</span>
+          <span class="story__text display display--yellow" data-story="b" data-split>A new perspective</span>
+        </div>
+
+        <div class="jar-slot story__slot" data-jar="story"></div>
+
+        <div class="story__row story__row--bottom" aria-hidden="true">
+          <span class="story__text display" data-story="a" data-split>Adventure</span>
+          <span class="story__text display display--yellow" data-story="b" data-split>On taste</span>
+        </div>
+
+        <ul class="story__notes">
+          <li class="note note--1"><b>01</b> Whole spices, toasted by hand</li>
+          <li class="note note--2"><b>02</b> Fire-roasted tomato base</li>
+          <li class="note note--3"><b>03</b> Finished with real cream</li>
+        </ul>
+
+        <div class="story__progress" aria-hidden="true"><span class="dots"></span><span class="story__bar"></span></div>
+      </section>
+
+      <!-- 3. SPLIT -->
+      <section class="split" id="shop" aria-labelledby="split-title">
+        <div class="split__dark">
+          <p class="eyebrow eyebrow--yellow">Chapter 02 — The Promise</p>
+          <h2 class="display display--cream split__title" id="split-title" data-split>No fillers.<br>No shortcuts.</h2>
+          <p class="split__copy" data-fade>
+            We simmer every batch for four hours in small copper pots, the slow way our grandmothers
+            insisted on. Nothing goes in the jar that you wouldn't put in your own pan.
+          </p>
+          <ul class="ticks" data-fade>
+            <li>No gums or thickeners</li>
+            <li>No refined sugar</li>
+            <li>No preservatives</li>
+            <li>Gluten free</li>
+          </ul>
+          <div class="split__actions" data-fade>
+            <a class="btn" href="#order">Shop the sauce</a>
+            <span class="price"><b>$11</b> / 450g jar</span>
+          </div>
+        </div>
+        <div class="split__pink pattern pattern--pink">
+          <div class="jar-slot split__slot" data-jar="split"></div>
+          <span class="sticker sticker--a" aria-hidden="true">Serves<br><b>4</b></span>
+          <span class="sticker sticker--b" aria-hidden="true">4 hr<br>simmer</span>
+        </div>
+      </section>
+
+      <div class="marquee" aria-hidden="true">
+        <div class="marquee__band marquee__band--yellow"><div class="marquee__track" data-marquee="1"></div></div>
+        <div class="marquee__band marquee__band--pink"><div class="marquee__track" data-marquee="-1"></div></div>
+      </div>
+
+      <!-- 4. GALLERY -->
+      <section class="gallery" id="gallery" aria-labelledby="gallery-title">
+        <header class="gallery__head">
+          <p class="eyebrow eyebrow--brown">Chapter 03 — The Table</p>
+          <h2 class="display display--brown" id="gallery-title" data-split>From jar to table</h2>
+          <p class="gallery__intro" data-fade>One jar, a hundred dinners. Here's what our riot squad has been cooking this week.</p>
+        </header>
+        <div class="gallery__grid" data-gallery></div>
+      </section>
+
+      <!-- 5. WHY -->
+      <section class="why" id="why" aria-labelledby="why-title">
+        <p class="eyebrow eyebrow--brown">Chapter 04 — The Vessel</p>
+        <h2 class="display display--brown why__title" id="why-title">
+          <span data-split>Why the</span>
+          <span class="hl"><span data-split>jar</span><svg viewBox="0 0 100 40" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M3 26 C 20 20, 45 30, 62 24 S 88 22, 97 25"/></svg></span>
+          <span class="hl"><span data-split>matters</span><svg viewBox="0 0 100 40" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M2 27 C 18 22, 40 31, 60 25 S 86 21, 98 26"/></svg></span>
+        </h2>
+        <p class="why__lead" data-fade>
+          Plastic pouches leach. Cans taste of tin. Glass keeps a sauce
+          <span class="hl hl--thin">exactly as we made it<svg viewBox="0 0 100 40" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M1 28 C 25 22, 50 32, 75 25 S 92 24, 99 27"/></svg></span>
+          — bright, clean, and a little bit rebellious.
+        </p>
+        <ol class="why__points">
+          <li data-fade>
+            <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M14 10h20v6c4 2 6 6 6 10v14a4 4 0 0 1-4 4H12a4 4 0 0 1-4-4V26c0-4 2-8 6-10z" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/><path d="M17 30a7 7 0 0 0 14 0" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg>
+            <span class="why__num">01</span>
+            <h3>Infinitely recyclable</h3>
+            <p>Glass can be melted and reborn forever without losing a thing. Rinse it, bin it, or keep it.</p>
+          </li>
+          <li data-fade>
+            <svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="16" fill="none" stroke="currentColor" stroke-width="3"/><path d="M13 35 35 13" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg>
+            <span class="why__num">02</span>
+            <h3>Zero plastic taste</h3>
+            <p>Acidic tomato and plastic don't mix. Glass is inert, so you only taste tomato, chili and cream.</p>
+          </li>
+          <li data-fade>
+            <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 6c6 8 12 13 12 22a12 12 0 0 1-24 0c0-9 6-14 12-22z" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/><path d="M24 26c2 3 4 5 4 8a4 4 0 0 1-8 0c0-3 2-5 4-8z" fill="currentColor"/></svg>
+            <span class="why__num">03</span>
+            <h3>Sealed at peak simmer</h3>
+            <p>We hot-fill every jar straight from the pot and seal it in seconds. No preservatives needed.</p>
+          </li>
+          <li data-fade>
+            <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 8l4 9 10 1-7 7 2 10-9-5-9 5 2-10-7-7 10-1z" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/></svg>
+            <span class="why__num">04</span>
+            <h3>Made for a second life</h3>
+            <p>Our ribbed lid fits a spice drawer perfectly. Customers send us their jar shelfies weekly.</p>
+          </li>
+        </ol>
+      </section>
+
+      <!-- 6. PINNED INSIDE -->
+      <section class="inside pattern pattern--orange" id="inside" aria-labelledby="inside-title">
+        <div class="inside__head">
+          <p class="eyebrow eyebrow--yellow">Chapter 05 — The Recipe</p>
+          <h2 class="display inside__title" id="inside-title" data-split>What's inside the jar</h2>
+        </div>
+        <div class="jar-slot inside__slot" data-jar="inside"></div>
+        <ul class="tags" aria-label="Ingredients">
+          <li class="tag" style="--l:17%;--t:34%;--r:-6deg"><span class="tag__dot"></span>Vine tomatoes</li>
+          <li class="tag tag--pink" style="--l:83%;--t:30%;--r:5deg"><span class="tag__dot"></span>Cultured cream</li>
+          <li class="tag tag--cream" style="--l:12%;--t:56%;--r:4deg"><span class="tag__dot"></span>Kashmiri chili</li>
+          <li class="tag" style="--l:88%;--t:52%;--r:-4deg"><span class="tag__dot"></span>Garam masala</li>
+          <li class="tag tag--pink" style="--l:21%;--t:78%;--r:-3deg"><span class="tag__dot"></span>Fenugreek leaf</li>
+          <li class="tag tag--cream" style="--l:79%;--t:75%;--r:6deg"><span class="tag__dot"></span>Ginger &amp; garlic</li>
+          <li class="tag tag--cream" style="--l:33%;--t:91%;--r:3deg"><span class="tag__dot"></span>Saffron threads</li>
+          <li class="tag" style="--l:67%;--t:92%;--r:-5deg"><span class="tag__dot"></span>Smoked paprika</li>
+        </ul>
+        <p class="inside__count"><b data-count>12</b> ingredients.<br>Every one you can pronounce.</p>
+      </section>
+
+      <!-- 7. RECIPES -->
+      <section class="recipes" id="recipes" aria-labelledby="recipes-title">
+        <header class="recipes__head">
+          <p class="eyebrow eyebrow--brown">Chapter 06 — The Kitchen</p>
+          <h2 class="display" id="recipes-title" data-split>Let's get cooking</h2>
+          <hr class="dots dots--brown" />
+        </header>
+        <div class="cards" data-cards></div>
+      </section>
+
+      <!-- 8. NEWSLETTER -->
+      <section class="news" id="order" aria-labelledby="news-title">
+        <div class="news__copy pattern pattern--orange">
+          <p class="eyebrow eyebrow--yellow">Join the riot</p>
+          <h2 class="display news__title" id="news-title" data-split>Get spicy updates straight to your inbox</h2>
+          <p class="news__offer" data-fade>Plus <mark>10% off</mark> your first jar. New drops, secret recipes, zero spam.</p>
+          <form class="news__form" data-form novalidate>
+            <label class="visually-hidden" for="email">Email address</label>
+            <input id="email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="you@yourkitchen.com" required />
+            <button class="btn" type="submit">Get 10% off</button>
+          </form>
+          <p class="news__msg" role="status" aria-live="polite" data-form-msg></p>
+        </div>
+        <div class="news__pink pattern pattern--pink">
+          <div class="jar-slot news__slot" data-jar="news"></div>
+          <div class="news__badge" aria-hidden="true"><b>10%</b><span>off your<br>first jar</span></div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="footer__top">
+        <div class="footer__col">
+          <h3>Shop</h3>
+          <ul><li><a href="#order">Tikka Masala</a></li><li><a href="#order">Riot Bundle (3)</a></li><li><a href="#order">Gift cards</a></li></ul>
+        </div>
+        <div class="footer__col">
+          <h3>Kitchen</h3>
+          <ul><li><a href="#recipes">Recipes</a></li><li><a href="#inside">Ingredients</a></li><li><a href="#why">Why glass</a></li></ul>
+        </div>
+        <div class="footer__col">
+          <h3>Say hi</h3>
+          <ul><li><a href="#top">Instagram</a></li><li><a href="#top">TikTok</a></li><li><a href="#top">Stockists</a></li></ul>
+        </div>
+        <a class="btn footer__cta" href="#top">Back to top ↑</a>
+      </div>
+      <hr class="dots dots--orange" />
+      <p class="footer__word display" data-fit aria-hidden="true">Saffron Riot</p>
+      <div class="footer__bottom">
+        <span>© 2026 Saffron Riot Foods. Simmered with love &amp; mild chaos.</span>
+        <span>Made in small batches.</span>
+      </div>
+    </footer>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
