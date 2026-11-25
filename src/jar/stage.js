@@ -12,7 +12,7 @@ import { makeLabelTextures, makeLidTextures, makeSauceTexture, makeShadowTexture
   while both are off-screen, so it's invisible).
 */
 
-const JAR_HEIGHT = 2.75; // world units, base of glass to top of lid
+const JAR_HEIGHT = 3.0; // world units, base of glass to top of lid
 const JAR_WIDTH = 2.05;
 
 const lerp = (a, b, t) => a + (b - a) * t;
@@ -63,12 +63,12 @@ function ribbedLidGeometry(radius, height, ribs, amp) {
 function buildJar(renderer) {
   const jar = new THREE.Group();
   const inner = new THREE.Group();
-  inner.position.y = -0.24; // pivot around the visual centre
+  inner.position.y = -0.1; // pivot around the visual centre
   jar.add(inner);
 
   // --- sauce (opaque core) ---
   const sauceProfile = [
-    [0, -1.04], [0.9, -1.04], [0.95, -1.0], [0.972, -0.92], [0.972, 0.82],
+    [0, -1.34], [0.9, -1.34], [0.95, -1.3], [0.972, -1.22], [0.972, 0.82],
     [0.95, 0.93], [0.9, 0.99], [0.6, 1.0], [0, 1.0],
   ].map(([x, y]) => new THREE.Vector2(x, y));
   const sauceTex = makeSauceTexture(renderer);
@@ -88,7 +88,7 @@ function buildJar(renderer) {
 
   // --- glass shell ---
   const glassProfile = [
-    [0.001, -1.1], [0.9, -1.1], [0.975, -1.075], [1.0, -1.0], [1.0, 0.84],
+    [0.001, -1.4], [0.9, -1.4], [0.975, -1.375], [1.0, -1.3], [1.0, 0.84],
     [0.985, 0.95], [0.94, 1.05], [0.885, 1.12], [0.875, 1.3],
   ].map(([x, y]) => new THREE.Vector2(x, y));
   const glass = new THREE.Mesh(
@@ -114,7 +114,7 @@ function buildJar(renderer) {
   const labelTex = makeLabelTextures(renderer);
   const arc = Math.PI * 2 * 0.84;
   const label = new THREE.Mesh(
-    new THREE.CylinderGeometry(1.013, 1.013, 1.36, 160, 1, true, -arc / 2, arc),
+    new THREE.CylinderGeometry(1.013, 1.013, 1.79, 160, 1, true, -arc / 2, arc),
     new THREE.MeshPhysicalMaterial({
       map: labelTex.map,
       metalnessMap: labelTex.metalnessMap,
@@ -125,7 +125,7 @@ function buildJar(renderer) {
       envMapIntensity: 1.5,
     })
   );
-  label.position.y = -0.12;
+  label.position.y = -0.055;
   label.renderOrder = 3;
   inner.add(label);
 
@@ -158,12 +158,13 @@ function buildJar(renderer) {
     new THREE.MeshPhysicalMaterial({
       map: lidTex.map,
       metalnessMap: lidTex.metalnessMap,
-      metalness: 1,
-      roughness: 0.3,
+      color: 0x8c8c8c, // darkens the albedo so the yellow doesn't blow out face-on
+      metalness: 0.35,
+      roughness: 0.38,
       specularIntensity: 0.35,
-      clearcoat: 0.2,
-      clearcoatRoughness: 0.35,
-      envMapIntensity: 1.2,
+      clearcoat: 0.6,
+      clearcoatRoughness: 0.2,
+      envMapIntensity: 1.1,
     })
   );
   top.rotation.x = -Math.PI / 2;

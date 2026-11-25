@@ -63,7 +63,8 @@ function fitText() {
     const w = el.getBoundingClientRect().width;
     el.style.width = '';
     // leave room for the 0.06em extrusion on the right
-    el.style.fontSize = `${Math.floor((100 * avail * 0.985) / (w + 6))}px`;
+    const share = parseFloat(el.dataset.fit) || 0.985; // share of the width to fill
+    el.style.fontSize = `${Math.floor((100 * avail * share) / (w + 6))}px`;
   });
 }
 

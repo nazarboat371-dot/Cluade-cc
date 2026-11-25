@@ -136,7 +136,7 @@ function paintLabel(ctx, W, H, mode) {
     const r = rng(7);
     ctx.fillStyle = 'rgba(255,190,90,0.05)';
     ctx.strokeStyle = 'rgba(255,190,90,0.05)';
-    for (let i = 0; i < 70; i++) {
+    for (let i = 0; i < 90; i++) {
       const x = r() * W;
       const y = r() * H;
       const k = r();
@@ -149,13 +149,11 @@ function paintLabel(ctx, W, H, mode) {
   ctx.fillStyle = gold;
   ctx.strokeStyle = gold;
 
-  // double rules top & bottom
+  // double rules + dotted rows, top and bottom
   ctx.fillRect(0, 26, W, 6);
   ctx.fillRect(0, 42, W, 2);
   ctx.fillRect(0, H - 32, W, 6);
   ctx.fillRect(0, H - 44, W, 2);
-
-  // dotted rows
   for (let x = 8; x < W; x += 22) {
     ctx.beginPath();
     ctx.arc(x, 62, 3, 0, Math.PI * 2);
@@ -163,93 +161,97 @@ function paintLabel(ctx, W, H, mode) {
     ctx.fill();
   }
 
-  const panel = (u) => u * W;
-  const draw = (offsetU) => {
-    const cx = panel(0.5 + offsetU);
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'alphabetic';
 
-    // ----- main panel -----
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'alphabetic';
-    ctx.font = '600 26px Archivo, sans-serif';
-    spacedText(ctx, 'SMALL BATCH  ·  EST. 2019', cx, 104, 6);
+  // ----- main panel (faces the camera) -----
+  const cx = W * 0.5;
+  ctx.font = '600 26px Archivo, sans-serif';
+  spacedText(ctx, 'SMALL BATCH  ·  EST. 2019', cx, 112, 6);
 
-    ctx.font = '150px Anton, Impact, sans-serif';
-    spacedText(ctx, 'SAFFRON', cx, 250, 6);
-    ctx.font = '96px Anton, Impact, sans-serif';
-    spacedText(ctx, 'RIOT', cx, 350, 14);
+  ctx.font = '160px Anton, Impact, sans-serif';
+  spacedText(ctx, 'SAFFRON', cx, 290, 6);
 
-    // flourish
-    ctx.fillRect(cx - 230, 312, 110, 4);
-    ctx.fillRect(cx + 120, 312, 110, 4);
-    drawStar(ctx, cx - 256, 314, 13, 5, 4);
-    ctx.fill();
-    drawStar(ctx, cx + 256, 314, 13, 5, 4);
-    ctx.fill();
+  ctx.fillRect(cx - 236, 326, 110, 4);
+  ctx.fillRect(cx + 126, 326, 110, 4);
+  drawStar(ctx, cx - 262, 328, 13, 5, 4);
+  ctx.fill();
+  drawStar(ctx, cx + 262, 328, 13, 5, 4);
+  ctx.fill();
 
-    // pill: TIKKA MASALA
-    const pw = 300;
-    const ph = 44;
-    const py = 372;
+  ctx.font = '112px Anton, Impact, sans-serif';
+  spacedText(ctx, 'RIOT', cx, 440, 14);
+
+  const pw = 320;
+  const ph = 50;
+  const py = 470;
+  ctx.beginPath();
+  ctx.roundRect(cx - pw / 2, py, pw, ph, ph / 2);
+  ctx.fill();
+  ctx.fillStyle = bg;
+  ctx.font = '35px Anton, Impact, sans-serif';
+  spacedText(ctx, 'TIKKA MASALA', cx, py + 39, 5);
+  ctx.fillStyle = gold;
+
+  ctx.font = '700 24px Archivo, sans-serif';
+  spacedText(ctx, 'SIMMER SAUCE  ·  450 g', cx, 578, 6);
+
+  // ----- left panel: ingredients -----
+  const lx = W * 0.26;
+  ctx.font = '44px Anton, Impact, sans-serif';
+  spacedText(ctx, 'SIMMER SAUCE', lx, 160, 4);
+  ctx.font = '500 23px Archivo, sans-serif';
+  [
+    'VINE TOMATOES · CULTURED',
+    'CREAM · ONION · GINGER ·',
+    'GARLIC · KASHMIRI CHILI ·',
+    'GARAM MASALA · FENUGREEK',
+    '· SMOKED PAPRIKA · SAFFRON',
+  ].forEach((l, i) => spacedText(ctx, l, lx, 225 + i * 36, 2));
+  for (let x = lx - 150; x <= lx + 150; x += 16) {
     ctx.beginPath();
-    ctx.roundRect(cx - pw / 2, py, pw, ph, ph / 2);
+    ctx.arc(x, 402, 2.5, 0, Math.PI * 2);
     ctx.fill();
-    ctx.fillStyle = bg;
-    ctx.font = '31px Anton, Impact, sans-serif';
-    spacedText(ctx, 'TIKKA MASALA', cx, py + 35, 5);
-    ctx.fillStyle = gold;
+  }
+  ctx.font = '800 24px Archivo, sans-serif';
+  spacedText(ctx, 'NET WT 16 OZ (450 g)', lx, 450, 3);
+  ctx.font = '500 18px Archivo, sans-serif';
+  spacedText(ctx, 'KEEP REFRIGERATED', lx, 505, 3);
+  spacedText(ctx, 'AFTER OPENING', lx, 530, 3);
 
-    // ----- side panel left (ingredients) -----
-    const lx = panel(0.5 + offsetU - 0.24);
-    ctx.font = '40px Anton, Impact, sans-serif';
-    spacedText(ctx, 'SIMMER SAUCE', lx, 136, 4);
-    ctx.font = '500 21px Archivo, sans-serif';
-    const lines = [
-      'VINE TOMATOES · CULTURED',
-      'CREAM · ONION · GINGER ·',
-      'GARLIC · KASHMIRI CHILI ·',
-      'GARAM MASALA · FENUGREEK',
-      '· SMOKED PAPRIKA · SAFFRON',
-    ];
-    lines.forEach((l, i) => spacedText(ctx, l, lx, 190 + i * 32, 2));
-    ctx.font = '800 22px Archivo, sans-serif';
-    spacedText(ctx, 'NET WT 16 OZ (450 g)', lx, 390, 3);
+  // ----- right panel: seal + heat meter -----
+  const rx = W * 0.74;
+  ctx.save();
+  ctx.lineWidth = 5;
+  ctx.beginPath();
+  ctx.arc(rx, 240, 104, 0, Math.PI * 2);
+  ctx.stroke();
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  ctx.arc(rx, 240, 92, 0, Math.PI * 2);
+  ctx.stroke();
+  drawStar(ctx, rx, 240, 50, 22, 12);
+  ctx.fill();
+  ctx.fillStyle = bg;
+  ctx.font = '44px Anton, Impact, sans-serif';
+  ctx.fillText('SR', rx, 256);
+  ctx.fillStyle = gold;
+  ctx.font = '700 19px Archivo, sans-serif';
+  textAlongArc(ctx, 'HAND-TOASTED · SLOW-SIMMERED · ', rx, 240, 76, -Math.PI * 0.96, 3);
+  ctx.restore();
 
-    // ----- side panel right (heat meter + seal) -----
-    const rx = panel(0.5 + offsetU + 0.24);
-    ctx.save();
-    ctx.lineWidth = 5;
-    ctx.beginPath();
-    ctx.arc(rx, 214, 96, 0, Math.PI * 2);
-    ctx.stroke();
-    ctx.lineWidth = 2;
-    ctx.beginPath();
-    ctx.arc(rx, 214, 84, 0, Math.PI * 2);
-    ctx.stroke();
-    drawStar(ctx, rx, 214, 46, 20, 12);
-    ctx.fill();
-    ctx.fillStyle = bg;
-    ctx.font = '40px Anton, Impact, sans-serif';
-    ctx.fillText('SR', rx, 229);
-    ctx.fillStyle = gold;
-    ctx.font = '700 18px Archivo, sans-serif';
-    textAlongArc(ctx, 'HAND-TOASTED · SLOW-SIMMERED · ', rx, 214, 70, -Math.PI * 0.96, 3);
-    ctx.restore();
+  ctx.font = '800 24px Archivo, sans-serif';
+  spacedText(ctx, 'HEAT', rx - 72, 425, 3);
+  for (let i = 0; i < 3; i++) {
+    ctx.globalAlpha = i < 2 ? 1 : 0.3;
+    drawChili(ctx, rx - 10 + i * 48, 419, 1, -0.35);
+    ctx.globalAlpha = 1;
+  }
+  ctx.font = '500 21px Archivo, sans-serif';
+  spacedText(ctx, 'MEDIUM · SERVES 4', rx, 480, 3);
+  spacedText(ctx, 'SIMMERED 4 HOURS', rx, 530, 3);
 
-    ctx.font = '800 22px Archivo, sans-serif';
-    spacedText(ctx, 'HEAT', rx - 70, 366, 3);
-    for (let i = 0; i < 3; i++) {
-      ctx.globalAlpha = i < 2 ? 1 : 0.3;
-      drawChili(ctx, rx - 10 + i * 46, 360, 0.95, -0.35);
-      ctx.globalAlpha = 1;
-    }
-    ctx.font = '500 20px Archivo, sans-serif';
-    spacedText(ctx, 'MEDIUM · SERVES 4', rx, 414, 3);
-  };
-
-  // The visible arc spans ~84% of the circumference. Paint once, centred.
-  draw(0);
-
-  // decorative vertical rules between panels
+  // dotted vertical rules between panels
   [0.355, 0.645].forEach((u) => {
     for (let y = 90; y < H - 90; y += 18) {
       ctx.beginPath();
@@ -261,7 +263,7 @@ function paintLabel(ctx, W, H, mode) {
 
 export function makeLabelTextures(renderer) {
   const W = 2048;
-  const H = 512;
+  const H = 688; // matches the label's arc-length : height (≈ 2.98 : 1)
   const [c1, x1] = canvas(W, H);
   paintLabel(x1, W, H, 'color');
   const [c2, x2] = canvas(W, H);
@@ -276,17 +278,27 @@ export function makeLabelTextures(renderer) {
 
 function paintLid(ctx, S, mode) {
   const color = mode === 'color';
-  const gold = color ? goldGradient(ctx, 0, 0, S, S) : '#fff';
-  const bg = color ? '#0d0605' : '#000';
+  let gold = '#fff';
+  if (color) {
+    // a punchier, brand-yellow gold than the label's foil
+    gold = ctx.createLinearGradient(0, 0, S, S);
+    ['#FFE36B', '#FFC21A', '#F2A20C', '#FFD23F'].forEach((c, i, a) => gold.addColorStop(i / (a.length - 1), c));
+  }
+  const ink = color ? '#160805' : '#000';
   const c = S / 2;
 
-  ctx.fillStyle = bg;
+  // black rim ring, then a big gold disc
+  ctx.fillStyle = ink;
   ctx.fillRect(0, 0, S, S);
+  ctx.fillStyle = gold;
+  ctx.beginPath();
+  ctx.arc(c, c, S * 0.455, 0, Math.PI * 2);
+  ctx.fill();
 
-  // fine concentric machining rings (only on the colour map)
+  // fine concentric machining rings on the gold (colour map only)
   if (color) {
-    for (let r = 20; r < c; r += 5) {
-      ctx.strokeStyle = `rgba(255,255,255,${0.015 + (r % 15 === 0 ? 0.02 : 0)})`;
+    for (let r = 20; r < S * 0.45; r += 6) {
+      ctx.strokeStyle = `rgba(90,50,0,${r % 18 === 0 ? 0.08 : 0.04})`;
       ctx.lineWidth = 1;
       ctx.beginPath();
       ctx.arc(c, c, r, 0, Math.PI * 2);
@@ -294,28 +306,22 @@ function paintLid(ctx, S, mode) {
     }
   }
 
-  ctx.fillStyle = gold;
-  ctx.strokeStyle = gold;
-
-  ctx.lineWidth = 10;
+  ctx.fillStyle = ink;
+  ctx.strokeStyle = ink;
+  ctx.lineWidth = 8;
   ctx.beginPath();
-  ctx.arc(c, c, S * 0.43, 0, Math.PI * 2);
+  ctx.arc(c, c, S * 0.41, 0, Math.PI * 2);
   ctx.stroke();
   ctx.lineWidth = 3;
-  ctx.beginPath();
-  ctx.arc(c, c, S * 0.405, 0, Math.PI * 2);
-  ctx.stroke();
   ctx.beginPath();
   ctx.arc(c, c, S * 0.27, 0, Math.PI * 2);
   ctx.stroke();
 
-  // ring text
   ctx.font = `${Math.round(S * 0.058)}px Anton, Impact, sans-serif`;
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
   textAlongArc(ctx, 'SAFFRON RIOT ✦ TIKKA MASALA ✦ BOLD FLAVOR ✦ ', c, c, S * 0.34, -Math.PI / 2 - 0.05, 4);
 
-  // sunburst
   for (let i = 0; i < 24; i++) {
     const a = (i / 24) * Math.PI * 2;
     ctx.save();
@@ -332,8 +338,7 @@ function paintLid(ctx, S, mode) {
   ctx.beginPath();
   ctx.arc(c, c, S * 0.15, 0, Math.PI * 2);
   ctx.fill();
-
-  ctx.fillStyle = bg;
+  ctx.fillStyle = gold;
   ctx.font = `${Math.round(S * 0.15)}px Anton, Impact, sans-serif`;
   ctx.fillText('SR', c, c + S * 0.008);
 }
