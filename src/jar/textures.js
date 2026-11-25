@@ -166,7 +166,7 @@ function paintLabel(ctx, W, H, mode) {
 
   // ----- main panel (faces the camera) -----
   const cx = W * 0.5;
-  ctx.font = '600 26px Archivo, sans-serif';
+  ctx.font = '600 26px "Archivo Variable", sans-serif';
   spacedText(ctx, 'SMALL BATCH  ·  EST. 2019', cx, 112, 6);
 
   ctx.font = '160px Anton, Impact, sans-serif';
@@ -193,14 +193,14 @@ function paintLabel(ctx, W, H, mode) {
   spacedText(ctx, 'TIKKA MASALA', cx, py + 39, 5);
   ctx.fillStyle = gold;
 
-  ctx.font = '700 24px Archivo, sans-serif';
+  ctx.font = '700 24px "Archivo Variable", sans-serif';
   spacedText(ctx, 'SIMMER SAUCE  ·  450 g', cx, 578, 6);
 
   // ----- left panel: ingredients -----
   const lx = W * 0.26;
   ctx.font = '44px Anton, Impact, sans-serif';
   spacedText(ctx, 'SIMMER SAUCE', lx, 160, 4);
-  ctx.font = '500 23px Archivo, sans-serif';
+  ctx.font = '500 23px "Archivo Variable", sans-serif';
   [
     'VINE TOMATOES · CULTURED',
     'CREAM · ONION · GINGER ·',
@@ -213,9 +213,9 @@ function paintLabel(ctx, W, H, mode) {
     ctx.arc(x, 402, 2.5, 0, Math.PI * 2);
     ctx.fill();
   }
-  ctx.font = '800 24px Archivo, sans-serif';
+  ctx.font = '800 24px "Archivo Variable", sans-serif';
   spacedText(ctx, 'NET WT 16 OZ (450 g)', lx, 450, 3);
-  ctx.font = '500 18px Archivo, sans-serif';
+  ctx.font = '500 18px "Archivo Variable", sans-serif';
   spacedText(ctx, 'KEEP REFRIGERATED', lx, 505, 3);
   spacedText(ctx, 'AFTER OPENING', lx, 530, 3);
 
@@ -236,18 +236,18 @@ function paintLabel(ctx, W, H, mode) {
   ctx.font = '44px Anton, Impact, sans-serif';
   ctx.fillText('SR', rx, 256);
   ctx.fillStyle = gold;
-  ctx.font = '700 19px Archivo, sans-serif';
+  ctx.font = '700 19px "Archivo Variable", sans-serif';
   textAlongArc(ctx, 'HAND-TOASTED · SLOW-SIMMERED · ', rx, 240, 76, -Math.PI * 0.96, 3);
   ctx.restore();
 
-  ctx.font = '800 24px Archivo, sans-serif';
+  ctx.font = '800 24px "Archivo Variable", sans-serif';
   spacedText(ctx, 'HEAT', rx - 72, 425, 3);
   for (let i = 0; i < 3; i++) {
     ctx.globalAlpha = i < 2 ? 1 : 0.3;
     drawChili(ctx, rx - 10 + i * 48, 419, 1, -0.35);
     ctx.globalAlpha = 1;
   }
-  ctx.font = '500 21px Archivo, sans-serif';
+  ctx.font = '500 21px "Archivo Variable", sans-serif';
   spacedText(ctx, 'MEDIUM · SERVES 4', rx, 480, 3);
   spacedText(ctx, 'SIMMERED 4 HOURS', rx, 530, 3);
 

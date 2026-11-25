@@ -1,7 +1,5 @@
 import '@fontsource/anton/400.css';
-import '@fontsource/archivo/400.css';
-import '@fontsource/archivo/600.css';
-import '@fontsource/archivo/800.css';
+import '@fontsource-variable/archivo/wdth.css';
 import 'lenis/dist/lenis.css';
 import './styles.css';
 
@@ -362,7 +360,7 @@ async function initJar() {
     canvas.remove();
     return null;
   }
-  await Promise.all([document.fonts.load('150px Anton'), document.fonts.load('800 22px Archivo'), document.fonts.load('600 22px Archivo')]);
+  await Promise.all([document.fonts.load('150px Anton'), document.fonts.load('800 22px "Archivo Variable"'), document.fonts.load('600 22px "Archivo Variable"')]);
   const { JarStage } = await import('./jar/stage.js');
   const stage = new JarStage(canvas, { reduced });
 

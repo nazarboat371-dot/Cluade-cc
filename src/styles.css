@@ -11,8 +11,9 @@
   --cream: #fff4de;
   --extrude: #3b1003;
 
-  --font-display: 'Anton', Impact, 'Arial Narrow', sans-serif;
-  --font-body: 'Archivo', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  /* wide & heavy: Archivo stretched to 125% at black weight */
+  --font-display: 'Archivo Variable', 'Arial Black', Impact, sans-serif;
+  --font-body: 'Archivo Variable', system-ui, -apple-system, 'Segoe UI', sans-serif;
 
   --gutter: clamp(16px, 4vw, 56px);
   --radius: clamp(20px, 2.4vw, 36px);
@@ -153,21 +154,13 @@ input {
 
 /* ============ TYPE ============ */
 .display {
-  --ex: var(--extrude);
   font-family: var(--font-display);
-  font-weight: 400;
+  font-stretch: 125%;
+  font-weight: 900;
   text-transform: uppercase;
-  line-height: 0.88;
-  letter-spacing: 0.01em;
+  line-height: 0.92;
+  letter-spacing: -0.01em;
   color: var(--yellow);
-  /* chunky 3D extrusion: stacked shadows stepping down-right */
-  text-shadow:
-    0.005em 0.006em 0 var(--ex), 0.01em 0.012em 0 var(--ex), 0.015em 0.018em 0 var(--ex),
-    0.02em 0.024em 0 var(--ex), 0.025em 0.03em 0 var(--ex), 0.03em 0.036em 0 var(--ex),
-    0.035em 0.042em 0 var(--ex), 0.04em 0.048em 0 var(--ex), 0.045em 0.054em 0 var(--ex),
-    0.05em 0.06em 0 var(--ex), 0.055em 0.066em 0 var(--ex), 0.06em 0.072em 0 var(--ex),
-    0.065em 0.078em 0 var(--ex), 0.07em 0.084em 0 var(--ex),
-    0.09em 0.11em 0.08em rgb(30 11 5 / 0.35);
 }
 .display--yellow { color: var(--yellow); }
 .display--cream { color: var(--cream); }
@@ -175,7 +168,7 @@ input {
 
 /* :where keeps this at class-level specificity so section titles can override it */
 :where(h2).display {
-  font-size: clamp(3rem, 9.5vw, 9.5rem);
+  font-size: clamp(2.1rem, 6.6vw, 6.4rem);
 }
 
 .eyebrow {
@@ -345,13 +338,14 @@ input {
   align-items: center;
   gap: 0.15em;
   font-family: var(--font-display);
-  font-size: clamp(1.3rem, 2.4vw, 2.1rem);
+  font-stretch: 125%;
+  font-weight: 900;
+  font-size: clamp(0.95rem, 1.6vw, 1.45rem);
   line-height: 1;
   text-transform: uppercase;
   text-decoration: none;
   color: var(--cream);
   letter-spacing: 0.02em;
-  text-shadow: 1px 1px 0 var(--orange-dark), 2px 2px 0 var(--orange-dark), 3px 3px 0 var(--orange-dark);
 }
 .logo__mark {
   width: 0.95em;
@@ -411,7 +405,7 @@ input {
   z-index: 6;
   display: block;
   margin-top: 0.35em;
-  font-size: clamp(2rem, 9.5vw, 5rem);
+  font-size: clamp(1.3rem, 6vw, 3rem);
   line-height: 0.9;
   white-space: nowrap;
   color: var(--cream);
@@ -422,9 +416,9 @@ input {
 .hero__slot {
   position: absolute;
   left: 50%;
-  top: 33%;
-  width: min(70vw, 360px);
-  height: 40svh;
+  top: 23%;
+  width: min(76vw, 380px);
+  height: 46svh;
   transform: translateX(-50%);
 }
 .hero__bottom {
@@ -446,7 +440,7 @@ input {
 .hero__badge {
   position: absolute;
   right: var(--gutter);
-  top: 33svh;
+  bottom: 26px;
   z-index: 6;
   width: clamp(88px, 11vw, 150px);
   aspect-ratio: 1;
@@ -507,12 +501,12 @@ input {
 }
 .story__text {
   grid-area: 1 / 1;
-  font-size: clamp(3rem, 13vw, 11.5rem);
+  font-size: clamp(2rem, 9vw, 8.4rem);
   text-align: center;
   white-space: nowrap;
 }
 .story__text[data-story='b'] {
-  font-size: clamp(2.4rem, 10.5vw, 10rem);
+  font-size: clamp(1.4rem, 5.6vw, 6.2rem);
 }
 .story__slot {
   width: min(70vw, 400px);
@@ -579,7 +573,7 @@ input {
   gap: 1.6rem;
 }
 .split__title {
-  font-size: clamp(3.2rem, 11vw, 8.6rem);
+  font-size: clamp(1.8rem, 8vw, 5.6rem);
   --ex: var(--orange-deep);
 }
 .split__copy {
@@ -621,7 +615,8 @@ input {
 }
 .price b {
   font-family: var(--font-display);
-  font-weight: 400;
+  font-stretch: 125%;
+  font-weight: 900;
   font-size: 2rem;
   color: var(--yellow);
   margin-right: 0.15em;
@@ -656,7 +651,8 @@ input {
 }
 .sticker b {
   font-family: var(--font-display);
-  font-weight: 400;
+  font-stretch: 125%;
+  font-weight: 900;
   font-size: 2.4em;
 }
 .sticker--a { top: 7%; left: 6%; background: var(--yellow); transform: rotate(-12deg); }
@@ -700,7 +696,9 @@ input {
   gap: 0.5em;
   padding-right: 0.5em;
   font-family: var(--font-display);
-  font-size: clamp(1.8rem, 4.6vw, 4.2rem);
+  font-stretch: 125%;
+  font-weight: 900;
+  font-size: clamp(1.3rem, 3.2vw, 3rem);
   line-height: 1;
   text-transform: uppercase;
   white-space: nowrap;
@@ -767,7 +765,8 @@ input {
 }
 .shot__num {
   font-family: var(--font-display);
-  font-weight: 400;
+  font-stretch: 125%;
+  font-weight: 900;
   font-size: 1.3rem;
   color: var(--orange);
 }
@@ -780,7 +779,7 @@ input {
 }
 .why__title {
   max-width: 14ch;
-  font-size: clamp(3.4rem, 12vw, 11rem);
+  font-size: clamp(2.2rem, 8vw, 7.4rem);
 }
 .why__title > span {
   display: inline-block;
@@ -858,15 +857,18 @@ input {
 }
 .why__num {
   font-family: var(--font-display);
+  font-stretch: 125%;
+  font-weight: 900;
   color: var(--pink);
   font-size: 1.1rem;
 }
 .why__points h3 {
   font-family: var(--font-display);
-  font-weight: 400;
+  font-stretch: 125%;
+  font-weight: 900;
   text-transform: uppercase;
-  font-size: clamp(1.5rem, 2.2vw, 2rem);
-  line-height: 1;
+  font-size: clamp(1.1rem, 1.5vw, 1.35rem);
+  line-height: 1.05;
 }
 .why__points p {
   font-size: 0.95rem;
@@ -887,14 +889,14 @@ input {
   text-align: center;
 }
 .inside__title {
-  font-size: clamp(2.6rem, 8.5vw, 7.5rem);
+  font-size: clamp(1.7rem, 5.8vw, 5rem);
 }
 .inside__slot {
   position: absolute;
   left: 50%;
   top: 56%;
-  width: min(56vw, 380px);
-  height: 40svh;
+  width: min(48vw, 380px);
+  height: 32svh;
   transform: translate(-50%, -50%);
 }
 .tags {
@@ -940,7 +942,8 @@ input {
 }
 .inside__count b {
   font-family: var(--font-display);
-  font-weight: 400;
+  font-stretch: 125%;
+  font-weight: 900;
   font-size: 3.4rem;
   line-height: 0.9;
   color: var(--yellow);
@@ -1037,10 +1040,11 @@ input {
 }
 .card h3 {
   font-family: var(--font-display);
-  font-weight: 400;
+  font-stretch: 125%;
+  font-weight: 900;
   text-transform: uppercase;
-  font-size: clamp(1.7rem, 2.6vw, 2.4rem);
-  line-height: 0.95;
+  font-size: clamp(1.25rem, 1.8vw, 1.6rem);
+  line-height: 1;
 }
 .card p {
   font-size: 0.95rem;
@@ -1080,8 +1084,8 @@ input {
   gap: 1.4rem;
 }
 .news__title {
-  font-size: clamp(2.8rem, 8vw, 6.8rem);
-  max-width: 11ch;
+  font-size: clamp(1.9rem, 5.4vw, 4.6rem);
+  max-width: 13ch;
 }
 .news__offer {
   max-width: 28rem;
@@ -1154,7 +1158,8 @@ input {
 }
 .news__badge b {
   font-family: var(--font-display);
-  font-weight: 400;
+  font-stretch: 125%;
+  font-weight: 900;
   font-size: clamp(2.2rem, 3.6vw, 3.4rem);
   line-height: 0.9;
 }
@@ -1228,8 +1233,8 @@ input {
   .nav__right .pill--pink { display: inline-flex; }
 
   .hero { padding-top: 96px; }
-  .hero__sub { font-size: 6vw; }
-  .hero__slot { top: 40%; height: 44svh; width: 40vw; }
+  .hero__sub { font-size: 4.2vw; }
+  .hero__slot { top: 30%; height: 52svh; width: 40vw; }
   .hero__bottom {
     grid-template-columns: 1fr;
     max-width: 24rem;
@@ -1281,8 +1286,8 @@ input {
   .pill--menu { display: none; }
 
   .hero { padding-top: 104px; }
-  .hero__sub { font-size: 4.6vw; }
-  .hero__slot { top: 47%; height: 45svh; width: 30vw; }
+  .hero__sub { font-size: 3.2vw; }
+  .hero__slot { top: 33%; height: 58svh; width: 32vw; }
   .hero__bottom { position: absolute; left: var(--gutter); bottom: 40px; }
   .hero__badge { right: calc(var(--gutter) + 2vw); bottom: 48px; }
   .hero__scroll {
@@ -1323,7 +1328,7 @@ input {
   .story__slot { height: 46svh; width: 30vw; }
 
   .split { grid-template-columns: 1fr 1fr; }
-  .split__title { font-size: clamp(3rem, 6.4vw, 7.4rem); }
+  .split__title { font-size: clamp(2rem, 4.2vw, 4.8rem); }
   .why__lead { margin-left: auto; max-width: 34rem; margin-top: -2rem; }
   .split__pink { min-height: 100svh; border-radius: var(--radius) 0 0 var(--radius); }
 
