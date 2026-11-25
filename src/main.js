@@ -94,7 +94,18 @@ function initNav() {
 let lenis = null;
 function initScroll() {
   if (reduced) return;
-  lenis = new Lenis({ lerp: 0.1, wheelMultiplier: 1, anchors: true });
+  lenis = new Lenis({
+    lerp: 0.1,
+    wheelMultiplier: 1,
+    anchors: true,
+    // Drive touch scrolling from the same frame loop as the WebGL jar. With native touch
+    // scrolling the page moves on the compositor thread and the jar (placed from JS) trails
+    // behind on fast swipes; syncing keeps the jar glued to its panel.
+    // Release glide tuned against native iOS: a fast 2700px/s flick glides ~1.4k px.
+    syncTouch: true,
+    syncTouchLerp: 0.07,
+    touchInertiaExponent: 1.9,
+  });
   lenis.on('scroll', ScrollTrigger.update);
   gsap.ticker.add((t) => lenis.raf(t * 1000));
   gsap.ticker.lagSmoothing(0);
@@ -166,7 +177,7 @@ function initStory() {
       start: 'top top',
       end: () => `+=${window.innerHeight * 2.4}`,
       pin: true,
-      scrub: reduced ? true : 0.6,
+      scrub: reduced ? true : 0.3,
       onUpdate: (self) => (story.progress = self.progress),
       invalidateOnRefresh: true,
     },
@@ -178,13 +189,15 @@ function initStory() {
     tl.to(notes, { autoAlpha: 1, duration: 0.05, stagger: 0.2 }, 0.15);
   } else {
     gsap.set(b, { yPercent: 115 });
-    // A words in when the section enters (not scrubbed)
-    gsap.from(a, {
-      yPercent: 115,
-      rotate: 6,
+    // Entrance animates the line elements, never the words: the scrubbed timeline below owns
+    // the words' yPercent, and two tweens on the same property can leave them hidden when
+    // someone scrolls back up into the section.
+    gsap.from(aEls, {
+      yPercent: 35,
+      autoAlpha: 0,
       duration: 1.1,
       ease: 'expo.out',
-      stagger: 0.08,
+      stagger: 0.12,
       scrollTrigger: { trigger: section, start: 'top 65%', toggleActions: 'play none none reverse' },
     });
     tl.fromTo(a, { yPercent: 0 }, { yPercent: -115, stagger: 0.03, duration: 0.12, ease: 'power2.in', immediateRender: false }, 0.4)
@@ -209,7 +222,7 @@ function initInside() {
       start: 'top top',
       end: () => `+=${window.innerHeight * 2}`,
       pin: true,
-      scrub: reduced ? true : 0.5,
+      scrub: reduced ? true : 0.3,
       onUpdate: (self) => (inside.progress = self.progress),
       invalidateOnRefresh: true,
     },
@@ -285,7 +298,7 @@ function initHighlights() {
       {
         clipPath: 'inset(-40% -12% -40% -12%)',
         ease: 'none',
-        scrollTrigger: { trigger: svg.closest('.hl'), start: 'top 85%', end: 'top 50%', scrub: 0.6 },
+        scrollTrigger: { trigger: svg.closest('.hl'), start: 'top 85%', end: 'top 50%', scrub: 0.3 },
       }
     );
   });

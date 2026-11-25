@@ -47,11 +47,12 @@ export function grainTile() {
   const c = document.createElement('canvas');
   c.width = c.height = S;
   const ctx = c.getContext('2d');
+  // light and dark specks with their own alpha, so the overlay needs no blend mode
   const img = ctx.createImageData(S, S);
   for (let i = 0; i < img.data.length; i += 4) {
-    const v = Math.random() * 255;
+    const v = Math.random() < 0.5 ? 0 : 255;
     img.data[i] = img.data[i + 1] = img.data[i + 2] = v;
-    img.data[i + 3] = 255;
+    img.data[i + 3] = Math.random() * 30;
   }
   ctx.putImageData(img, 0, 0);
   return `url(${c.toDataURL('image/png')})`;

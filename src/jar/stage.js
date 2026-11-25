@@ -68,11 +68,12 @@ function buildJar(renderer) {
 
   // --- sauce (opaque core) ---
   const sauceProfile = [
+    // filled up through the shoulder into the neck, so the lid sits right on the sauce
     [0, -1.34], [0.9, -1.34], [0.95, -1.3], [0.972, -1.22], [0.972, 0.82],
-    [0.95, 0.93], [0.9, 0.99], [0.6, 1.0], [0, 1.0],
+    [0.962, 0.93], [0.925, 1.02], [0.872, 1.09], [0.858, 1.14], [0.856, 1.22], [0, 1.22],
   ].map(([x, y]) => new THREE.Vector2(x, y));
   const sauceTex = makeSauceTexture(renderer);
-  sauceTex.repeat.set(2, 1);
+  sauceTex.repeat.set(2, 2); // roughly equal texel density around and along the jar
   const sauce = new THREE.Mesh(
     new THREE.LatheGeometry(sauceProfile, 96),
     new THREE.MeshPhysicalMaterial({
@@ -151,6 +152,12 @@ function buildJar(renderer) {
   lip.rotation.x = Math.PI / 2;
   lip.position.y = 1.185;
   inner.add(lip);
+
+  // close the underside of the lid so you can't see into it when the jar tumbles
+  const under = new THREE.Mesh(new THREE.RingGeometry(0.84, 0.955, 96, 1), lidMat);
+  under.rotation.x = Math.PI / 2; // face down
+  under.position.y = 1.18;
+  inner.add(under);
 
   const lidTex = makeLidTextures(renderer);
   const top = new THREE.Mesh(
